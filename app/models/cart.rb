@@ -7,20 +7,17 @@ class Cart < ApplicationRecord
     end
   end
 
-  def discount
-    discount_factor(self.total_price) * self.total_price
-  end
-
-  private
-  def discount_factor total
+  def find_discount
+    total = self.total_price
     if total > 100
-      0.2
+      { description: '20% off on total greater than $100', factor: 0.2 }
     elsif total > 50
-      0.15
+      { description: '15% off on total greater than $50', factor: 0.15 }
     elsif total > 20
       0.1
+      { description: '10% off on total greater than $20', factor: 0.1 }
     else
-      0
+      false
     end
   end
 end

@@ -10,4 +10,9 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def cart_with_price price
+    Cart.new(cart_items: [
+      CartItem.new(product: Product.new(price: price))
+    ])
+  end
 end
