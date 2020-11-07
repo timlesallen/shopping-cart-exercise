@@ -10,7 +10,7 @@ require 'json'
 
 # seeds products into db using db/products.json
 products_json = File.read(File.expand_path('products.json', __dir__))
-products = JSON.parse(products_json, {symbolize_names: true})
+products = JSON.parse(products_json, { symbolize_names: true })
 products.each do |product|
   Product.create(product)
 end

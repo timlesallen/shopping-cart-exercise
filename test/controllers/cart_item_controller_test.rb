@@ -1,14 +1,14 @@
 require 'test_helper'
 
 class CartItemControllerTest < ActionDispatch::IntegrationTest
-  test "should create cart item" do
+  test 'should create cart item' do
     assert_difference('CartItem.count') do
       post cart_items_url, params: { uuid: Product.first.uuid }
     end
     assert_redirected_to('/')
   end
 
-  test "should increment existing cart item quantity" do
+  test 'should increment existing cart item quantity' do
     post cart_items_url, params: { uuid: Product.first.uuid }
     assert_no_difference('CartItem.count') do
       post cart_items_url, params: { uuid: Product.first.uuid }
@@ -17,7 +17,7 @@ class CartItemControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to('/')
   end
 
-  test "should completely delete an existing cart item" do
+  test 'should completely delete an existing cart item' do
     post cart_items_url, params: { uuid: Product.first.uuid }
     cartItem = CartItem.first
     assert_difference('CartItem.count', -1) do

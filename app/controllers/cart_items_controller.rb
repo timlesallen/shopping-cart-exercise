@@ -2,7 +2,7 @@ class CartItemsController < ApplicationController
   def create
     product = Product.find_by(uuid: params[:uuid])
     existing = CartItem.find_by(product: product, cart: @current_cart)
-    if existing then
+    if existing
       existing.quantity += 1
       existing.save
     else
@@ -10,6 +10,7 @@ class CartItemsController < ApplicationController
     end
     redirect_to '/'
   end
+
   def destroy
     CartItem.find(params[:id]).destroy
     redirect_to '/'

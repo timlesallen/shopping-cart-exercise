@@ -11,13 +11,14 @@ class Cart < ApplicationRecord
   # total price adjusted by any applicable discount
   def discounted_price
     discount = find_discount
-    if !discount then return self.total_price end
-    (self.total_price * (1 - discount[:factor])).round(2)
+    return total_price unless discount
+
+    (total_price * (1 - discount[:factor])).round(2)
   end
 
   # find any discount that applies, false if none
   def find_discount
-    total = self.total_price
+    total = total_price
     if total > 100
       { description: '20% off on total greater than $100', factor: 0.2 }
     elsif total > 50

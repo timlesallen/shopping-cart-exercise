@@ -3,8 +3,6 @@ class CartsController < ApplicationController
   def index
     @products = Product.all
     discount = @current_cart.find_discount
-    if discount then
-      @discount = discount[:description]
-    end
+    @discount = discount[:description] if discount
   end
 end
