@@ -1,4 +1,4 @@
-# marketplacer code exercise - shopping cart
+# shopping cart code exercise
 
 I've chosen to implement this as a rails app for a couple of reasons:
 
