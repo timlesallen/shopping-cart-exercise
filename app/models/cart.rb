@@ -1,18 +1,21 @@
 class Cart < ApplicationRecord
   has_many :cart_items
 
+  # total price without any discounts applied
   def total_price
     cart_items.reduce(0) do |sum, item|
       sum + (item.product.price * item.quantity)
     end
   end
 
+  # total price adjusted by any applicable discount
   def discounted_price
     discount = find_discount
     if !discount then return self.total_price end
     (self.total_price * (1 - discount[:factor])).round(2)
   end
 
+  # find any discount that applies, false if none
   def find_discount
     total = self.total_price
     if total > 100
