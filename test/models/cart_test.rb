@@ -53,7 +53,6 @@ class CartTest < ActiveSupport::TestCase
       { description: '20% off on total greater than $100', factor: 0.2 },
       cart_with_price(100.01).find_discount
     )
-    puts cart_with_price(100.01).discounted_price.class
     assert_equal(
       80.01,
       # For some reason, the BigDecimal and Float values are not seen as equal here
