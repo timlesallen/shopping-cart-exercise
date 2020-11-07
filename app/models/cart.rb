@@ -3,7 +3,7 @@ class Cart < ApplicationRecord
 
   def total_price
     cart_items.reduce(0) do |sum, item|
-      sum + item.product.price
+      sum + (item.product.price * item.quantity)
     end
   end
 end
