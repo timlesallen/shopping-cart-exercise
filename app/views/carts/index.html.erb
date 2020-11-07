@@ -1,0 +1,62 @@
+<% provide(:title, "Cart") %>
+<h1>Your Cart</h1>
+
+<table class="row">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Subtotal</th>
+    </tr>
+  </thead>
+
+<tbody>
+    <% @current_cart.cart_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= item.quantity %></td>
+        <td><%= number_to_currency item.product.price, unit: '$' %></td>
+        <td><%= number_to_currency item.product.price * item.quantity, unit: '$' %></td>
+        <td><%= link_to 'Remove', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<hr>
+<% if @discount %>
+  <div class="discount">
+    <b>Discount applied: </b><%= @discount %>
+  </div>
+<% end %>
+<div class="total-price"><b>
+  Total Price: </b><%= number_to_currency @current_cart.total_price, unit: '$' %>
+</div>
+<% if @discount %>
+  <div class="total-price"><b>
+    Discounted Total Price: </b><span style="color: green"><%= number_to_currency @current_cart.discounted_price, unit: '$' %></span>
+  </div>
+<% end %>
+
+<hr>
+<h1>Available Products</h1>
+
+<table class="row">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+
+<tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= number_to_currency product.price, unit: '$' %></td>
+        <td><%= link_to "Buy", cart_items_path(uuid: product.uuid), method: :post %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
