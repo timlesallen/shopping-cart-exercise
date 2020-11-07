@@ -30,7 +30,11 @@ If a discount applies, an additional section is added to the output notifying th
 
 It just uses your session to link to the cart. I really haven't gone overboard with security or styling.
 
-I've mainly focussed on testing the business logic with the tests.
+I've mainly focussed on testing the the bits of the code that are business
+logic related - obviously there could be more work put in - I've
+tried to get the low hanging fruit.
+
+Hope you like it!
 
 ## Tests
 
