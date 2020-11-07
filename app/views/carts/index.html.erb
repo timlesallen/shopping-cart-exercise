@@ -24,9 +24,20 @@
   </tbody>
 </table>
 <hr>
+<% if @discount %>
+  <div class="discount">
+    <b>Discount applied: </b><%= @discount %>
+  </div>
+<% end %>
 <div class="total-price"><b>
-  Total Price: </b><span style="color: green"><%= number_to_currency @current_cart.total_price, unit: '$' %></span>
+  Total Price: </b><%= number_to_currency @current_cart.total_price, unit: '$' %>
 </div>
+<% if @discount %>
+  <div class="total-price"><b>
+    Discounted Total Price: </b><span style="color: green"><%= number_to_currency @current_cart.discounted_price, unit: '$' %></span>
+  </div>
+<% end %>
+
 
 <h1>Available Products</h1>
 

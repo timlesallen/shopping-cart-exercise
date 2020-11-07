@@ -7,6 +7,12 @@ class Cart < ApplicationRecord
     end
   end
 
+  def discounted_price
+    discount = find_discount
+    if !discount then return self.total_price end
+    (self.total_price * (1 - discount[:factor])).round(2)
+  end
+
   def find_discount
     total = self.total_price
     if total > 100
